@@ -38,12 +38,14 @@ def organize_files(directory):
         for category, extensions in file_categories.items():
             if any(filename.lower().endswith(ext) for ext in extensions):
                 shutil.move(file_path, os.path.join(directory, category, filename))
+                print(f"Moved {filename} to {category}")
                 file_moved = True
                 break
 
         #Move Remaining Files to "Other"
         if not file_moved:
             shutil.move(file_path, os.path.join(directory, "Other", filename))
+            print(f'Moved {filename} to Other')
 
     print(f"Files in '{directory}' have been organized successfully!")
 
