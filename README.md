@@ -7,5 +7,8 @@ The intended audience for this application is people who are looking to organize
 ## Key Features
 - TBD
 
+## Inspiration
+https://hackr.io/blog/how-to-create-a-python-file-organizer
+
 ### Author
 Andy Diaz
