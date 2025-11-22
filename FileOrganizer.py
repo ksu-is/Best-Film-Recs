@@ -25,6 +25,8 @@ def organize_files(directory):
         folder_path = os.path.join(directory, category)
         os.makedirs(folder_path, exist_ok=True)
 
+        moved_count = 0
+
     #Move Files into Corresponding Folders
     for filename in os.listdir(directory):
         file_path = os.path.join(directory, filename)
@@ -39,6 +41,7 @@ def organize_files(directory):
             if any(filename.lower().endswith(ext) for ext in extensions):
                 shutil.move(file_path, os.path.join(directory, category, filename))
                 print(f"Moved {filename} to {category}")
+                moved_count += 1
                 file_moved = True
                 break
 
@@ -46,6 +49,7 @@ def organize_files(directory):
         if not file_moved:
             shutil.move(file_path, os.path.join(directory, "Other", filename))
             print(f'Moved {filename} to Other')
+            moved_count += 1
 
     print(f"Files in '{directory}' have been organized successfully!")
 
