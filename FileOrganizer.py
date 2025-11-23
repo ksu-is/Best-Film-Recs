@@ -23,12 +23,13 @@ def organize_files(directory):
         print(f"Error {directory} is not a valid directory.")
         return
     
+    moved_count = 0
+    
     #Create Folders for Category
     for category in file_categories:
         folder_path = os.path.join(directory, category)
         os.makedirs(folder_path, exist_ok=True)
 
-        moved_count = 0
 
     #Move Files into Corresponding Folders
     for filename in os.listdir(directory):
@@ -54,7 +55,7 @@ def organize_files(directory):
             #print(f'Moved {filename} to Other')
             moved_count += 1
 
-    print(f"Files in '{directory}' have been organized successfully! ({moved_count} files moved)")
+    return f"Files in '{directory}' have been organized successfully! ({moved_count} files moved)"
 
 #directory_to_organize = input('Enter the directory path to organize: ')
 #organize_files(directory_to_organize)
@@ -70,7 +71,7 @@ def choose_folder():
 def run_organizer():
     folder = folder_var.get().strip()
     if not folder:
-        messagebox.showwarning("Please select a folder to organize.")
+        messagebox.showwarning("No folder selected", "Please select a folder to organize.")
         return
     
     result = organize_files(folder)
@@ -93,6 +94,6 @@ frame.pack()
 tk.Entry(frame, textvariable = folder_var, width = 40).pack(side = tk.LEFT, padx = 5)
 tk.Button(frame, text = "Browse", command = choose_folder).pack(side = tk.LEFT)
 tk.Button(root, text = "Organize Files", command = run_organizer, height = 2, width = 20).pack(pady = 20)
-tk.Label(root, textvariable = output_var, fg = "blue", font = ("Arial, 11")).pack(pady = 10)
+tk.Label(root, textvariable = output_var, fg = "blue", font = ("Arial", 11)).pack(pady = 10)
 
 root.mainloop()
